@@ -1,39 +1,56 @@
-import React, {Component} from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import React, {Component, Fragment} from 'react';
+import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
 
-import Menu from './components/Menu';
 import Header from './components/Header';
+import Info from './components/Info';
 import Login from './components/Login';
+import Menu from './components/Menu';
 import Races from './components/Races';
 
 import './App.css';
 
 class App extends Component {
   state = {
-    isMenuOpened: false
+    isMenuOpened: false,
+    isAuthorized: false
   }
 
-  openMenu = () => {
-    this.setState({isMenuOpened: true});
-  };
+  setRegisteredUser = () => {
+    this.setState({isAuthorized: true});
+  }
+
+  renderLoginComponent = () => <Login setRegisteredUser={this.setRegisteredUser}/>;
+
+  openMenu = () => this.setState({isMenuOpened: true});
 
   closeMenu = () => this.setState({isMenuOpened: false});
 
   render() {
-    const {isMenuOpened} = this.state;
+    const {isMenuOpened, isAuthorized} = this.state;
 
     return (
       <Router>
         {isMenuOpened
           ? <Menu closeMenu={this.closeMenu}/>
-          : <div>
+          : <Fragment>
             <Header openMenu={this.openMenu}/>
-            <Route exact path="/login" component={Login}/>
-            <Route exact path="/jogs" component={Races}/>
-          </div>}
+            <PrivateRoute exact path="/jogs" component={Races} isAuthorized={isAuthorized}/>
+            <PrivateRoute exact path="/info" component={Info} isAuthorized={isAuthorized}/>
+            {!isAuthorized && <Route exact path="/login" render={this.renderLoginComponent}/>}
+          </Fragment>}
       </Router>
     );
   }
+}
+
+function PrivateRoute({component: Component, ...rest}) {
+  const renderComponent = (props) => {
+    return rest.isAuthorized
+      ? <Component {...props} />
+      : <Redirect to={{pathname: '/login'}}/>;
+  };
+
+  return <Route {...rest} render={renderComponent}/>;
 }
 
 export default App;

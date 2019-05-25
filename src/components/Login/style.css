@@ -1,0 +1,19 @@
+.login {
+    height: calc(100% - 77px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.login-button {
+    border: rgb(233, 144, 249) 3px solid;
+    border-radius: 36px;
+    height: 60px;
+    width: 151px;
+    color: rgb(233, 144, 249);
+    background-color: white;
+    cursor: pointer;
+    font-size: 18px;
+}
+

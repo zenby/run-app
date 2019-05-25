@@ -1,0 +1,15 @@
+.info-container {
+    padding: 25px;
+}
+
+h3 {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 25px;
+    color: rgb(126, 211, 33)
+}
+
+p {
+    font-size: 12px;
+    line-height: 24px;
+}

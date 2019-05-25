@@ -8,8 +8,23 @@ body {
     font-family: inherit;
 }
 
+button:focus {
+    outline: 0;
+}
+
+#root {
+    height: 100vh;
+}
+
 @font-face {
     font-family: 'San Francisco';
-    src: url("assets/fonts/SFUIText-Bold.otf") format("opentype");
+    src: url("assets/fonts/SFUIText-Bold.otf") format("truetype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'San Francisco';
+    src: url("assets/fonts/SFUIText-Bold.otf") format("truetype");
+    font-weight: bold;
 }
 
