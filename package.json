@@ -14,7 +14,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint --fix ."
+    "lint": "eslint --quiet ."
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -33,6 +33,19 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0"
+    "eslint": "^5.16.0",
+    "husky": "^2.3.0",
+    "lint-staged": "^8.1.7"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix --quiet",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
