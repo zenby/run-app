@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-import Menu from './components/Menu'
+import Menu from './components/Menu';
 
 import './App.css';
 
@@ -11,7 +11,7 @@ function App() {
     <div>
       {/*<Header/>*/}
       {/*<div>*/}
-        {/*initial react app*/}
+      {/*initial react app*/}
       {/*</div>*/}
       {/*<Login/>*/}
       {/*<Races/>*/}

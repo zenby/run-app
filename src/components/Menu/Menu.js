@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
-import Login from '../Login'
-import Races from '../Races'
+import Login from '../Login';
+import Races from '../Races';
 
 class Menu extends Component {
 
@@ -28,7 +28,7 @@ class Menu extends Component {
           <Route path="/about" component={Races}/>
         </div>
       </Router>
-    )
+    );
   }
 }
 

@@ -1,10 +1,10 @@
-import React, {Component} from 'react'
-import {syncRaces} from 'utils/racesUtils'
+import React, {Component} from 'react';
+import {syncRaces} from 'utils/racesUtils';
 
 class Races extends Component {
 
   syncRaces = () => {
-    syncRaces()
+    syncRaces();
   }
 
   render() {
@@ -13,7 +13,7 @@ class Races extends Component {
         Races component
         <button onClick={this.syncRaces}>Sync</button>
       </div>
-    )
+    );
   }
 }
 

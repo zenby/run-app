@@ -4,7 +4,7 @@ import {loginUser} from 'utils/loginUtils';
 class Login extends Component {
 
   loginUser = () => {
-    loginUser()
+    loginUser();
   }
 
   render() {
@@ -13,7 +13,7 @@ class Login extends Component {
         Login component
         <button onClick={this.loginUser}>Let me in</button>
       </div>
-    )
+    );
   }
 }
 

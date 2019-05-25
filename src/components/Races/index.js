@@ -1,3 +1,3 @@
-import Races from './Races'
+import Races from './Races';
 
-export default Races
+export default Races;
