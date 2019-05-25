@@ -2,10 +2,10 @@ import React from 'react';
 
 import logoImg from 'assets/icons/logo.png';
 
-const Logo = () => {
+const LogoIcon = () => {
   return (
     <img src={logoImg} alt={'logo'}/>
   );
 };
 
-export default Logo;
+export default LogoIcon;

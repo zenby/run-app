@@ -1,17 +1,19 @@
 import React, {Component} from 'react';
 
-import Logo from './components/Logo';
-import Menu from './components/Menu';
+import LogoIcon from './components/LogoIcon';
+import MenuIcon from './components/MenuIcon';
 
 import './style.css';
 
 class Header extends Component {
 
   render() {
+    const {openMenu} = this.props;
+
     return (
       <div className={'header'}>
-        <Logo/>
-        <Menu/>
+        <LogoIcon/>
+        <MenuIcon onMenuClick={openMenu}/>
       </div>
     );
   }

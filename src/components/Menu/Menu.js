@@ -1,33 +1,37 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
-import Login from '../Login';
-import Races from '../Races';
+import CancelIcon from './components/CancelIcon';
+import GreenLogoIcon from './components/GreenLogoIcon';
+
+import './style.css';
 
 class Menu extends Component {
 
   render() {
+    const {closeMenu} = this.props;
+
     return (
-      <Router>
+      <div className={'menu'}>
+        <div className={'menu-header'}>
+          <GreenLogoIcon/>
+          <CancelIcon onClick={closeMenu}/>
+        </div>
         <div>
+
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/jogs" onClick={closeMenu}>jogs</Link>
             </li>
             <li>
-              <Link to="/about">Races</Link>
+              <Link to="/info" onClick={closeMenu}>info</Link>
             </li>
             <li>
-              <Link to="/topics">Info</Link>
+              <Link to="/topics" onClick={closeMenu}>contact us</Link>
             </li>
           </ul>
-
-          <hr/>
-
-          <Route exact path="/" component={Login}/>
-          <Route path="/about" component={Races}/>
         </div>
-      </Router>
+      </div>
     );
   }
 }
