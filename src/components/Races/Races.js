@@ -1,9 +1,10 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
+import {syncRaces} from 'utils/racesUtils'
 
 class Races extends Component {
-  
-  syncRaces = () => {
 
+  syncRaces = () => {
+    syncRaces()
   }
 
   render() {
