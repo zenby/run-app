@@ -7,8 +7,6 @@ import Login from './components/Login';
 import Menu from './components/Menu';
 import Races from './components/Races';
 
-import './App.css';
-
 class App extends Component {
   state = {
     isMenuOpened: false,
