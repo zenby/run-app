@@ -1,17 +1,23 @@
 import React, {Component} from 'react';
-import {syncRaces} from 'utils/racesUtils';
+import {getRaces} from 'utils/racesUtils';
+
+import Filter from './components/Filter';
+import Race from './components/Race';
 
 class Races extends Component {
+  state = {races: []}
 
-  syncRaces = () => {
-    syncRaces();
+  componentDidMount() {
+    getRaces().then(races => this.setState({races}));
   }
 
   render() {
+    const {races} = this.state;
+
     return (
       <div>
-        Races component
-        <button onClick={this.syncRaces}>Sync</button>
+        <Filter/>
+        {races.map(race => <Race race={race} key={race.id}/>)}
       </div>
     );
   }
