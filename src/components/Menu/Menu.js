@@ -15,10 +15,10 @@ class Menu extends Component {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/about">Races</Link>
             </li>
             <li>
-              <Link to="/topics">Topics</Link>
+              <Link to="/topics">Info</Link>
             </li>
           </ul>
 
