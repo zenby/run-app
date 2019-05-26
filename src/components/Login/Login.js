@@ -20,7 +20,7 @@ class Login extends Component {
     return (
       <div className={'login'}>
         <BearIcon/>
-        <button onClick={this.loginUser} className={'login-button'}>
+        <button onClick={this.loginUser} className={'action-button'}>
           Let me in
         </button>
       </div>

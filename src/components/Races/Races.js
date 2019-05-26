@@ -1,7 +1,9 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {getRaces} from 'utils/racesUtils';
 
 import Filter from './components/Filter';
+import EmptyList from './components/EmptyList';
+import RaceForm from './components/RaceForm';
 import Race from './components/Race';
 
 class Races extends Component {
@@ -10,11 +12,13 @@ class Races extends Component {
     filter: {
       startDate: undefined,
       endDate: undefined
-    }
+    },
+    isRaceFormOpened: false,
+    selectedRace: {}
   }
 
   componentDidMount() {
-    getRaces().then(races => this.setState({races}));
+    this.syncRaces();
   }
 
   changeFilterDate = (date, filterName) => {
@@ -26,22 +30,40 @@ class Races extends Component {
     });
   }
 
+  closeRaceForm = () => {
+    this.setState({isRaceFormOpened: false, selectedRace: {}});
+  }
+
+  selectRace = (race) => {
+    this.setState({isRaceFormOpened: true, selectedRace: race});
+  }
+
+  filterRaces = (race) => {
+    const {startDate, endDate} = this.state.filter;
+    if (startDate && startDate > race.date) return false;
+    if (endDate && endDate < race.date) return false;
+    return true;
+  }
+
+  syncRaces = () => {
+    getRaces().then(races => this.setState({races}));
+  }
+
   render() {
-    const {races, filter} = this.state;
+    const {races, filter, isRaceFormOpened, selectedRace} = this.state;
     const {isRaceFilterShown} = this.props;
-    const {startDate, endDate} = filter;
 
     return (
-      <div>
-        {isRaceFilterShown && <Filter filter={filter} changeFilterDate={this.changeFilterDate}/>}
-        {races
-          .filter(race => {
-            if (startDate && startDate > race.date) return false;
-            if (endDate && endDate < race.date) return false;
-            return true;
-          })
-          .map(race => <Race race={race} key={race.id}/>)}
-      </div>
+      !isRaceFormOpened
+        ? <Fragment>
+          {isRaceFilterShown && <Filter filter={filter} changeFilterDate={this.changeFilterDate}/>}
+          {races.length
+            ? races
+              .filter(this.filterRaces)
+              .map(race => <Race race={race} key={race.id} onRaceClick={this.selectRace}/>)
+            : <EmptyList/>}
+        </Fragment>
+        : <RaceForm race={selectedRace} closeRaceForm={this.closeRaceForm} syncRaces={this.syncRaces}/>
     );
   }
 }

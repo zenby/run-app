@@ -6,11 +6,11 @@
     align-items: center;
 }
 
-.login-button {
+.action-button {
+    padding: 20px 34px;
     border: rgb(233, 144, 249) 3px solid;
     border-radius: 36px;
-    height: 60px;
-    width: 151px;
+    min-width: 151px;
     color: rgb(233, 144, 249);
     background-color: white;
     cursor: pointer;

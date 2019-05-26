@@ -6,6 +6,10 @@ import RaceIcon from './components/RaceIcon';
 import './style.css';
 
 class Race extends Component {
+  onClick = () => {
+    const {onRaceClick, race} = this.props;
+    onRaceClick(race);
+  }
 
   render() {
     const {race: {date, distance, time}} = this.props;
@@ -13,7 +17,7 @@ class Race extends Component {
 
     return (
       <div className={'race'}>
-        <RaceIcon/>
+        <RaceIcon onClick={this.onClick}/>
         <div className={'race-info'}>
           <div className={'row label'}>{moment(date * 1000).format('DD.MM.YYYY')}</div>
           <div className={'row'}>Speed: <span className={'label'}>{speed} km/h</span></div>
