@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import DatePicker from 'react-datepicker';
 import {getMilisecondsFromDate, getDateInSeconds} from 'utils/dateUtils';
-import {updateRace} from 'utils/racesUtils';
+import {updateRace, addRace} from 'utils/racesUtils';
 
 import RaceFormCloseIcon from './components/RaceFormCloseIcon';
 
@@ -11,6 +11,9 @@ import './style.css';
 class RaceForm extends Component {
   state = {
     race: {
+      distance: undefined,
+      time: undefined,
+      date: undefined,
       ...this.props.race
     }
   }
@@ -27,12 +30,17 @@ class RaceForm extends Component {
 
   saveJob = () => {
     const {closeRaceForm, syncRaces, race} = this.props;
+    const {race: formRace} = this.state;
     closeRaceForm();
 
-    const isRaceChanged = Object.keys(race).some(key => race[key] !== this.state.race[key]);
-    if (isRaceChanged) {
-      updateRace(this.state.race);
-      syncRaces();
+    if (race.user_id) {
+      const isRaceChanged = Object.keys(formRace).some(key => race[key] !== formRace[key]);
+      if (isRaceChanged) {
+        updateRace(formRace);
+        syncRaces();
+      }
+    } else {
+      addRace(formRace);
     }
   }
 
@@ -58,7 +66,7 @@ class RaceForm extends Component {
             name={'distance'}
             min={'0'}
             max={'10000'}
-            value={distance}
+            value={distance || ''}
             onChange={this.onChange}
             type={'number'}
           />
@@ -69,7 +77,7 @@ class RaceForm extends Component {
             name={'time'}
             min={'0'}
             max={'10000'}
-            value={time}
+            value={time || ''}
             onChange={this.onChange}
             type={'number'}
           />
@@ -77,7 +85,7 @@ class RaceForm extends Component {
         <div className={'row'}>
           Date
           <DatePicker
-            name={'startDate'}
+            name={'date'}
             value={getMilisecondsFromDate(date)}
             selected={getMilisecondsFromDate(date)}
             onChange={this.changeDate}

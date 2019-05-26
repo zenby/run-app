@@ -5,6 +5,9 @@ import Filter from './components/Filter';
 import EmptyList from './components/EmptyList';
 import RaceForm from './components/RaceForm';
 import Race from './components/Race';
+import AddRaceIcon from './components/AddRaceIcon';
+
+import './style.css';
 
 class Races extends Component {
   state = {
@@ -38,6 +41,10 @@ class Races extends Component {
     this.setState({isRaceFormOpened: true, selectedRace: race});
   }
 
+  openRaceForm = () => {
+    this.setState({isRaceFormOpened: true, selectedRace: {}});
+  }
+
   filterRaces = (race) => {
     const {startDate, endDate} = this.state.filter;
     if (startDate && startDate > race.date) return false;
@@ -56,8 +63,9 @@ class Races extends Component {
     return (
       !isRaceFormOpened
         ? <Fragment>
+          <AddRaceIcon styleName={'add-icon'} onClick={this.openRaceForm}/>
           {isRaceFilterShown && <Filter filter={filter} changeFilterDate={this.changeFilterDate}/>}
-          {races.length
+          {races && races.length
             ? races
               .filter(this.filterRaces)
               .map(race => <Race race={race} key={race.id} onRaceClick={this.selectRace}/>)

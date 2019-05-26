@@ -19,3 +19,12 @@ export function updateRace(race) {
   /* eslint-disable no-console */
     .catch((error) => console.error(error));
 }
+
+export function addRace(race) {
+  return axios.post(`${URL}/data/jog`, {
+    ...race,
+    date: new Date(race.date * 1000)
+  })
+  /* eslint-disable no-console */
+    .catch((error) => console.error(error));
+}
