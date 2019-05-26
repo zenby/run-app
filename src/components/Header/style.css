@@ -10,3 +10,17 @@
 .header *:hover {
     cursor: pointer;
 }
+
+.icons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.active-filter {
+    margin-right: 39px;
+}
+
+.inactive-filter {
+    margin-right: 45px;
+}

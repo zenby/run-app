@@ -10,7 +10,8 @@ import Races from './components/Races';
 class App extends Component {
   state = {
     isMenuOpened: false,
-    isAuthorized: false
+    isAuthorized: false,
+    isRaceFilterShown: false
   }
 
   setRegisteredUser = () => {
@@ -23,16 +24,24 @@ class App extends Component {
 
   closeMenu = () => this.setState({isMenuOpened: false});
 
+  toggleRaceFilter = () => this.setState({isRaceFilterShown: !this.state.isRaceFilterShown})
+
   render() {
-    const {isMenuOpened, isAuthorized} = this.state;
+    const {isMenuOpened, isAuthorized, isRaceFilterShown} = this.state;
 
     return (
       <Router>
         {isMenuOpened
           ? <Menu closeMenu={this.closeMenu}/>
           : <Fragment>
-            <Header openMenu={this.openMenu}/>
-            <PrivateRoute exact path="/jogs" component={Races} isAuthorized={isAuthorized}/>
+            <Header
+              openMenu={this.openMenu}
+              toggleRaceFilter={this.toggleRaceFilter}
+              isRaceFilterShown={isRaceFilterShown}
+            />
+            <PrivateRoute
+              exact path="/jogs" component={Races} isAuthorized={isAuthorized} componentProps={{isRaceFilterShown}}
+            />
             <PrivateRoute exact path="/info" component={Info} isAuthorized={isAuthorized}/>
             {!isAuthorized && <Route exact path="/login" render={this.renderLoginComponent}/>}
           </Fragment>}
@@ -44,7 +53,7 @@ class App extends Component {
 function PrivateRoute({component: Component, ...rest}) {
   const renderComponent = (props) => {
     return rest.isAuthorized
-      ? <Component {...props} />
+      ? <Component {...props} {...rest.componentProps}/>
       : <Redirect to={{pathname: '/login'}}/>;
   };
 

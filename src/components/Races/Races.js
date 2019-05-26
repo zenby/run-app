@@ -28,11 +28,12 @@ class Races extends Component {
 
   render() {
     const {races, filter} = this.state;
+    const {isRaceFilterShown} = this.props;
     const {startDate, endDate} = filter;
 
     return (
       <div>
-        <Filter filter={filter} changeFilterDate={this.changeFilterDate}/>
+        {isRaceFilterShown && <Filter filter={filter} changeFilterDate={this.changeFilterDate}/>}
         {races
           .filter(race => {
             if (startDate && startDate > race.date) return false;
