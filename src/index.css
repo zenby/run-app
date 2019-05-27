@@ -22,7 +22,7 @@ button:focus {
 
 @font-face {
     font-family: 'San Francisco';
-    src: url("assets/fonts/sanfranciscodisplay-bold-webfont.woff") format("truetype");
+    src: url("assets/fonts/sanfranciscodisplay-medium-webfont.woff") format("truetype");
     font-weight: 600;
 }
 
