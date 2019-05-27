@@ -1,50 +1,49 @@
-import React, {Component} from 'react';
+import React from 'react';
 import DatePicker from 'react-datepicker';
 import {getDateInSeconds, getMilisecondsFromDate, dateFormat} from 'utils/dateUtils';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import './style.css';
 
-class Filter extends Component {
+const Filter = ({changeFilterDate, filter}) => {
 
-  changeEndDate = (date) => this.props.changeFilterDate(getDateInSeconds(date), 'endDate');
+  const changeEndDate = (date) => changeFilterDate(getDateInSeconds(date), 'endDate');
 
-  changeStartDate = (date) => this.props.changeFilterDate(getDateInSeconds(date), 'startDate');
+  const changeStartDate = (date) => changeFilterDate(getDateInSeconds(date), 'startDate');
 
-  render() {
-    const {filter} = this.props;
+  const filterStartDate = getMilisecondsFromDate(filter.startDate);
+  const filterEndDate = getMilisecondsFromDate(filter.endDate);
 
-    return (
-      <div className={'filter'}>
-        <div className={'filter-item'}>
-          <span>Date from</span>
-          <DatePicker
-            name={'startDate'}
-            dateFormat={dateFormat}
-            value={getMilisecondsFromDate(filter.startDate)}
-            maxDate={getMilisecondsFromDate(filter.endDate)}
-            className={'date-input'}
-            selected={getMilisecondsFromDate(filter.startDate)}
-            onChange={this.changeStartDate}
-          />
-        </div>
-        <div className={'filter-item'}>
-          <span>Date to</span>
-          <DatePicker
-            name={'endDate'}
-            dateFormat={dateFormat}
-            value={getMilisecondsFromDate(filter.endDate)}
-            minDate={getMilisecondsFromDate(filter.startDate)}
-            className={'date-input'}
-            popperClassName={'right-popper-picker'}
-            popperPlacement={'bottom-end'}
-            selected={getMilisecondsFromDate(filter.endDate)}
-            onChange={this.changeEndDate}
-          />
-        </div>
+  return (
+    <div className={'filter'}>
+      <div className={'filter-item'}>
+        <span>Date from</span>
+        <DatePicker
+          name={'startDate'}
+          dateFormat={dateFormat}
+          value={filterStartDate}
+          maxDate={filterEndDate}
+          className={'date-input'}
+          selected={filterStartDate}
+          onChange={changeStartDate}
+        />
       </div>
-    );
-  }
-}
+      <div className={'filter-item'}>
+        <span>Date to</span>
+        <DatePicker
+          name={'endDate'}
+          dateFormat={dateFormat}
+          value={filterEndDate}
+          minDate={filterStartDate}
+          className={'date-input'}
+          popperClassName={'right-popper-picker'}
+          popperPlacement={'bottom-end'}
+          selected={filterEndDate}
+          onChange={changeEndDate}
+        />
+      </div>
+    </div>
+  );
+};
 
 export default Filter;
