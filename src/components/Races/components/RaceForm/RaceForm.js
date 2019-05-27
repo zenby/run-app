@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import DatePicker from 'react-datepicker';
-import {getMilisecondsFromDate, getDateInSeconds} from 'utils/dateUtils';
+import {getMilisecondsFromDate, getDateInSeconds, dateFormat} from 'utils/dateUtils';
 import {updateRace, addRace} from 'utils/racesUtils';
 
 import RaceFormCloseIcon from './components/RaceFormCloseIcon';
@@ -87,6 +87,7 @@ class RaceForm extends Component {
           <div className={'row-label'}>Date</div>
           <DatePicker
             name={'date'}
+            dateFormat={dateFormat}
             value={getMilisecondsFromDate(date)}
             selected={getMilisecondsFromDate(date)}
             onChange={this.changeDate}

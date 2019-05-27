@@ -9,3 +9,5 @@ export const getMilisecondsFromDate = (value) => {
     ? value * 1000
     : undefined;
 };
+
+export const dateFormat = 'dd.MM.yyyy';

@@ -6,6 +6,12 @@
     align-items: center;
 }
 
+.race:hover {
+    cursor: pointer;
+    transform: translateY(5px);
+    transition: all .2s ease;
+}
+
 .race-info > * {
     width: 200px;
     overflow: hidden;

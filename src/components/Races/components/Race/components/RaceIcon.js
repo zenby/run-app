@@ -2,9 +2,9 @@ import React from 'react';
 
 import raceImg from 'assets/icons/race.png';
 
-const RaceIcon = ({onClick}) => {
+const RaceIcon = () => {
   return (
-    <img src={raceImg} alt={'cancel'} onClick={onClick} style={{cursor: 'pointer'}}/>
+    <img src={raceImg} alt={'cancel'}/>
   );
 };
 

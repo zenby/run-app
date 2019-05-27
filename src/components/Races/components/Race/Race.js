@@ -16,8 +16,8 @@ class Race extends Component {
     const speed = time === 0 ? '∞' : Math.floor(distance / time * 60 * 10) / 10;
 
     return (
-      <div className={'race'}>
-        <RaceIcon onClick={this.onClick}/>
+      <div className={'race'} onClick={this.onClick}>
+        <RaceIcon/>
         <div className={'race-info'}>
           <div className={'row label'}>{moment(date * 1000).format('DD.MM.YYYY')}</div>
           <div className={'row'}>Speed: <span className={'label'}>{speed} km/h</span></div>
