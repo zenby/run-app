@@ -41,6 +41,7 @@ class RaceForm extends Component {
       }
     } else {
       addRace(formRace);
+      syncRaces();
     }
   }
 
@@ -61,7 +62,7 @@ class RaceForm extends Component {
       <form className={'race-form'}>
         <RaceFormCloseIcon onClick={closeRaceForm}/>
         <div className={'row'}>
-          Distance
+          <div className={'row-label'}>Distance</div>
           <input
             name={'distance'}
             min={'0'}
@@ -72,7 +73,7 @@ class RaceForm extends Component {
           />
         </div>
         <div className={'row'}>
-          Time
+          <div className={'row-label'}>Time</div>
           <input
             name={'time'}
             min={'0'}
@@ -83,7 +84,7 @@ class RaceForm extends Component {
           />
         </div>
         <div className={'row'}>
-          Date
+          <div className={'row-label'}>Date</div>
           <DatePicker
             name={'date'}
             value={getMilisecondsFromDate(date)}

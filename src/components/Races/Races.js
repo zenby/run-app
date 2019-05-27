@@ -64,9 +64,11 @@ class Races extends Component {
         ? <Fragment>
           <AddRaceIcon styleName={'add-icon'} onClick={this.openRaceForm}/>
           {isRaceFilterShown && <Filter filter={filter} changeFilterDate={this.changeFilterDate}/>}
-          {races && !!races.length && races
-            .filter(this.filterRaces)
-            .map(race => <Race race={race} key={race.id} onRaceClick={this.selectRace}/>)}
+          <div className={'race-list'}>
+            {races && !!races.length && races
+              .filter(this.filterRaces)
+              .map(race => <Race race={race} key={race.id} onRaceClick={this.selectRace}/>)}
+          </div>
         </Fragment>
         : <RaceForm race={selectedRace} closeRaceForm={this.closeRaceForm} syncRaces={this.syncRaces}/>
     );

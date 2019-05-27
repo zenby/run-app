@@ -1,6 +1,6 @@
 .race-form {
     position: relative;
-    width: 307px;
+    width: 235px;
     border-radius: 29px;
     background-color: rgb(126, 211, 33);
     font-weight: 400;
@@ -16,7 +16,7 @@
     border: rgb(151, 151, 151) 1px solid;
 }
 
-.race-form > .row {
+.race-form .row {
     margin-bottom: 20px;
 }
 
@@ -37,4 +37,28 @@
     border: white 2px solid;
     background-color: rgb(126, 211, 33);
     color: white;
+}
+
+.race-form-cancel {
+    width: 18px;
+}
+
+@media screen and (min-width: 600px) {
+    .race-form {
+        width: 326px;
+        padding: 101px 88px 47px;
+    }
+
+    .race-form .row {
+        display: flex;
+        align-items: center;
+    }
+
+    .row-label {
+        min-width: 90px;
+    }
+
+    .race-form-cancel {
+        width: 27px;
+    }
 }

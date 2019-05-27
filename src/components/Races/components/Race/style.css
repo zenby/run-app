@@ -20,3 +20,9 @@
 .row {
     margin-bottom: 9px;
 }
+
+@media screen and (min-width: 600px) {
+    .race {
+        border-width: 0;
+    }
+}

@@ -2,15 +2,31 @@
     padding: 25px;
 }
 
-h3 {
+.info-container h3 {
     margin: 0;
     text-transform: uppercase;
     font-size: 25px;
     color: rgb(126, 211, 33)
 }
 
-p {
+.info-container p {
     font-weight: 400;
     font-size: 12px;
-    line-height: 24px;
+    line-height: 1.71;
+}
+
+@media screen and (min-width: 600px) {
+    .info-container {
+        margin: 0 auto;
+        max-width: 614px;
+        padding-top: 85px;
+    }
+
+    .info-container h3 {
+        font-size: 36px;
+    }
+
+    .info-container p {
+        font-size: 14px;
+    }
 }

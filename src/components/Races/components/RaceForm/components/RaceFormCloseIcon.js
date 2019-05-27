@@ -14,6 +14,7 @@ const RaceFormCloseIcon = ({onClick}) => {
         cursor: 'pointer',
         position: 'absolute'
       }}
+      className={'race-form-cancel'}
     />
   );
 };

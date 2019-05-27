@@ -4,12 +4,13 @@
     font-weight: 400;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .filter-item {
     display: flex;
     width: 50%;
+    max-width: 250px;
     align-items: center;
     justify-content: space-evenly;
 }
@@ -21,6 +22,12 @@
     border: grey 1px solid;
     border-radius: 11px;
     cursor: pointer;
+}
+
+@media screen and (min-width: 600px) {
+    .date-input {
+        width: 100px;
+    }
 }
 
 .right-popper-picker .react-datepicker__triangle {

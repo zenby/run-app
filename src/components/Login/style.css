@@ -1,9 +1,23 @@
-.login {
+.login-container {
     height: calc(100% - 77px);
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
+}
+
+.login-box {
+    border-radius: 44px;
+    background-color: transparent;
+    width: 503px;
+    height: 379px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.login-box > img {
+    height: 150px;
 }
 
 .action-button {
@@ -19,4 +33,16 @@
 
 .action-button:hover {
     color: rgb(233, 144, 249);
+}
+
+@media screen and (min-width: 600px) {
+    .login-box {
+        background-color: rgb(233, 144, 249);
+    }
+
+    .login-box > .action-button {
+        border: white 3px solid;
+        background-color: rgb(233, 144, 249);
+        color: white;
+    }
 }
