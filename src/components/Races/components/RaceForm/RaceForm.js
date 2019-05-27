@@ -62,7 +62,7 @@ class RaceForm extends Component {
       <form className={'race-form'}>
         <RaceFormCloseIcon onClick={closeRaceForm}/>
         <div className={'row'}>
-          <div className={'row-label'}>Distance</div>
+          <div className={'row-label'}>Distance, km</div>
           <input
             name={'distance'}
             min={'0'}
@@ -73,7 +73,7 @@ class RaceForm extends Component {
           />
         </div>
         <div className={'row'}>
-          <div className={'row-label'}>Time</div>
+          <div className={'row-label'}>Time, min</div>
           <input
             name={'time'}
             min={'0'}

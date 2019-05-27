@@ -48,6 +48,9 @@
         width: 326px;
         padding: 101px 88px 47px;
     }
+    .race-form input {
+        margin: 0;
+    }
 
     .race-form .row {
         display: flex;
@@ -55,7 +58,7 @@
     }
 
     .row-label {
-        min-width: 90px;
+        min-width: 100px;
     }
 
     .race-form-cancel {
