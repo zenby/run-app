@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import DatePicker from 'react-datepicker';
 import {getMilisecondsFromDate, getDateInSeconds, dateFormat} from 'utils/dateUtils';
 import {updateRace, addRace} from 'utils/racesUtils';
+import {run, ruleRunner} from 'utils/validation';
+import {required, maxValue, minValue} from 'utils/validationRules';
 
 import RaceFormCloseIcon from './components/RaceFormCloseIcon';
 
@@ -15,51 +17,69 @@ class RaceForm extends Component {
       time: undefined,
       date: undefined,
       ...this.props.race
-    }
+    },
+    errors: {}
+  }
+
+  componentDidMount() {
+    this.setState({errors: run(this.state.race, validation)});
   }
 
   onChange = (ev) => {
     const {name, value} = ev.target;
-    this.setState({
-      race: {
-        ...this.state.race,
-        [name]: +value
-      }
+
+    this.setState((state) => {
+      const {race} = state;
+      race[name] = +value;
+
+      return {
+        race,
+        errors: run(race, validation)
+      };
     });
   }
 
   saveJob = () => {
-    const {closeRaceForm, syncRaces, race} = this.props;
+    const {race} = this.props;
     const {race: formRace} = this.state;
-    closeRaceForm();
 
     if (race.user_id) {
       const isRaceChanged = Object.keys(formRace).some(key => race[key] !== formRace[key]);
       if (isRaceChanged) {
-        updateRace(formRace);
-        syncRaces();
+        updateRace(formRace)
+          .then(this.goToRaces);
       }
     } else {
-      addRace(formRace);
-      syncRaces();
+      addRace(formRace)
+        .then(this.goToRaces);
     }
   }
 
+  goToRaces = () => {
+    const {closeRaceForm, syncRaces} = this.props;
+
+    syncRaces();
+    closeRaceForm();
+  }
+
   changeDate = (date) => {
-    this.setState({
-      race: {
-        ...this.state.race,
-        date: getDateInSeconds(date)
-      }
+    this.setState((prevState) => {
+      const {race} = prevState;
+      race.date = getDateInSeconds(date);
+      return {
+        race,
+        errors: run(race, validation)
+      };
     });
   }
 
   render() {
     const {closeRaceForm} = this.props;
-    const {race: {distance, time, date}} = this.state;
+    const {race: {distance, time, date}, errors} = this.state;
+    const isFormHasErrors = Object.values(errors).filter(Boolean).length;
 
     return (
-      <form className={'race-form'}>
+      <div className={'race-form'}>
         <RaceFormCloseIcon onClick={closeRaceForm}/>
         <div className={'row'}>
           <div className={'row-label'}>Distance, km</div>
@@ -71,6 +91,7 @@ class RaceForm extends Component {
             onChange={this.onChange}
             type={'number'}
           />
+          {errors.distance && <div className={'validation-message'}>{errors.distance}</div>}
         </div>
         <div className={'row'}>
           <div className={'row-label'}>Time, min</div>
@@ -82,6 +103,7 @@ class RaceForm extends Component {
             onChange={this.onChange}
             type={'number'}
           />
+          {errors.time && <div className={'validation-message'}>{errors.time}</div>}
         </div>
         <div className={'row'}>
           <div className={'row-label'}>Date</div>
@@ -92,11 +114,18 @@ class RaceForm extends Component {
             selected={getMilisecondsFromDate(date)}
             onChange={this.changeDate}
           />
+          {errors.date && <div className={'validation-message'}>{errors.date}</div>}
         </div>
-        <button className={'save-button'} onClick={this.saveJob}>Save</button>
-      </form>
+        <button disabled={isFormHasErrors} className={'save-button'} onClick={this.saveJob}>Save</button>
+      </div>
     );
   }
 }
+
+const validation = [
+  ruleRunner('distance', 'distance', minValue(0), maxValue(10000), required),
+  ruleRunner('time', 'time', minValue(0), maxValue(10000), required),
+  ruleRunner('date', 'date', required)
+];
 
 export default RaceForm;
