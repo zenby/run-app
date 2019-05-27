@@ -4,7 +4,7 @@ import menuImg from 'assets/icons/menu.png';
 
 const MenuIcon = ({onMenuClick}) => {
   return (
-    <img src={menuImg} alt={'menu'} onClick={onMenuClick}/>
+    <img src={menuImg} alt={'menu'} onClick={onMenuClick} style={{cursor: 'pointer'}}/>
   );
 };
 

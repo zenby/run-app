@@ -22,10 +22,13 @@ li {
 
 a {
     text-decoration: none;
+}
+
+.menu a {
     font-size: 25px;
     color: black;
 }
 
-a:hover {
+.menu a:hover {
     color: rgb(126, 211, 33)
 }

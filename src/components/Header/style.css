@@ -7,20 +7,57 @@
     padding: 0 25px;
 }
 
-.header *:hover {
+.nav-link:hover {
     cursor: pointer;
 }
 
-.icons-container {
+.nav-link {
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+    justify-content: center;
+    height: 100%;
+    padding: 0 23px;
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.nav-link-active {
+    text-decoration: underline;
+}
+
+.nav-container {
+    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+.icons-container {
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .active-filter {
     margin-right: 39px;
+    cursor: pointer;
 }
 
 .inactive-filter {
     margin-right: 45px;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 600px) {
+    .inactive-filter {
+        margin-right: 0;
+    }
+
+    .active-filter {
+        margin-right: 0;
+    }
 }
