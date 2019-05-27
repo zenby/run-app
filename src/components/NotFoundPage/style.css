@@ -23,3 +23,9 @@
 .sad-icon {
     margin-bottom: 30px;
 }
+
+@media screen and (min-width: 600px) {
+    .sad-icon {
+        margin-bottom: 47px;
+    }
+}

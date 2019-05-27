@@ -1,6 +1,6 @@
 import React from 'react';
 
-import image from 'assets/icons/sadEmotion.png';
+import image from 'assets/icons/sad-emotion.png';
 
 const SadIcon = ({styleName}) => {
   return (
