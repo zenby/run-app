@@ -1,4 +1,12 @@
-.nothing-found-container {
+.not-found-page {
+    height: calc(100% - 77px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.not-found-container {
     height: 150px;
     display: flex;
     flex-direction: column;
@@ -6,7 +14,7 @@
     align-items: center;
 }
 
-.nothing-found-label {
+.not-found-label {
     font-weight: 400;
     font-size: 24px;
     color: rgb(176, 176, 176);

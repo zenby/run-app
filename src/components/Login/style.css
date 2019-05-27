@@ -17,3 +17,6 @@
     font-size: 18px;
 }
 
+.action-button:hover {
+    color: rgb(233, 144, 249);
+}

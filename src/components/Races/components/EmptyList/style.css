@@ -1,7 +1,0 @@
-.empty-list {
-    height: calc(100% - 77px);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-}

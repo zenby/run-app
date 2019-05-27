@@ -1,11 +1,11 @@
 import React, {Component, Fragment} from 'react';
-import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
-
-import Header from './components/Header';
-import Info from './components/Info';
-import Login from './components/Login';
-import Menu from './components/Menu';
-import Races from './components/Races';
+import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
+import Header from 'components/Header';
+import Info from 'components/Info';
+import Login from 'components/Login';
+import Menu from 'components/Menu';
+import Races from 'components/Races';
+import NotFoundPage from 'components/NotFoundPage';
 
 class App extends Component {
   state = {
@@ -39,11 +39,14 @@ class App extends Component {
               toggleRaceFilter={this.toggleRaceFilter}
               isRaceFilterShown={isRaceFilterShown}
             />
-            <PrivateRoute
-              exact path="/jogs" component={Races} isAuthorized={isAuthorized} componentProps={{isRaceFilterShown}}
-            />
-            <PrivateRoute exact path="/info" component={Info} isAuthorized={isAuthorized}/>
-            {!isAuthorized && <Route exact path="/login" render={this.renderLoginComponent}/>}
+            <Switch>
+              <PrivateRoute
+                exact path="/jogs" component={Races} isAuthorized={isAuthorized} componentProps={{isRaceFilterShown}}
+              />
+              <PrivateRoute exact path="/info" component={Info} isAuthorized={isAuthorized}/>
+              {!isAuthorized && <Route exact path="/login" render={this.renderLoginComponent}/>}
+              <Route component={NotFoundPage}/>
+            </Switch>
           </Fragment>}
       </Router>
     );
