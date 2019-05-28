@@ -4,7 +4,7 @@ export const run = (state, runners) => {
   }, {});
 };
 
-export const ruleRunner = (field, name, ...validations) => {
+export const ruleRunner = (field, ...validations) => {
   return (state) => {
     for (const v  of validations) {
       const errorMessage = v(state[field]);

@@ -76,7 +76,7 @@ class RaceForm extends Component {
   render() {
     const {closeRaceForm} = this.props;
     const {race: {distance, time, date}, errors} = this.state;
-    const isFormHasErrors = Object.values(errors).filter(Boolean).length;
+    const isFormHasErrors = Object.values(errors).some(Boolean);
 
     return (
       <div className={'race-form'}>
@@ -123,9 +123,9 @@ class RaceForm extends Component {
 }
 
 const validation = [
-  ruleRunner('distance', 'distance', minValue(0), maxValue(10000), required),
-  ruleRunner('time', 'time', minValue(0), maxValue(10000), required),
-  ruleRunner('date', 'date', required)
+  ruleRunner('distance', minValue(0), maxValue(10000), required),
+  ruleRunner('time', minValue(0), maxValue(10000), required),
+  ruleRunner('date', required)
 ];
 
 export default RaceForm;
