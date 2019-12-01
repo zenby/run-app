@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'San Francisco', sans-serif;
+    font-weight: 600;
+}
+
+* {
+    font-family: inherit;
+    font-weight: inherit;
+}
+
+input:focus,
+button:focus {
+    outline: 0;
+}
+
+#root {
+    position: relative;
+    height: 100vh;
+}
+
+@font-face {
+    font-family: 'San Francisco';
+    src: url("assets/fonts/sanfranciscodisplay-medium-webfont.woff") format("truetype");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'San Francisco';
+    src: url("assets/fonts/sanfranciscodisplay-regular-webfont.woff") format("truetype");
+    font-weight: 400;
+}
