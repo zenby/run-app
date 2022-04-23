@@ -1,0 +1,17 @@
+.add-icon {
+    cursor: pointer;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+
+@media screen and (min-width: 600px) {
+    .add-icon {
+        width: 60px;
+    }
+
+    .race-list {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
